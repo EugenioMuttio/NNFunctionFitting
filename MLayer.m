@@ -19,10 +19,11 @@ y=polynomial2(x);
 
 mlnet = feedforwardnet(1,'traingd'); %HiddenSizes
 
- mlnet.trainParam.epochs = 100;
+ 
 % mlnet.trainParam.goal=1e-10
 %mlnet.trainParam.epochs = 1;
 
+mlnet.trainParam.epochs = 100;
 mlnet.layers{1}.size = 2;
 mlnet.layers{1}.transferFcn = 'tansig';
 mlnet.trainParam.lr= 0.01;
