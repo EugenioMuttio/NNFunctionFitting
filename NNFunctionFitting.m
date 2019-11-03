@@ -13,7 +13,7 @@ P=linspace(c,b,50); %Inputs
 T=polynomial2(P); %Outputs
 
 %NET DATA
-Nepoch=23; %Number of global iterations updating W and b
+Nepoch=50; %Number of global iterations updating W and b
 S=2; %Neurons in first layer
 
 w1=[10; 5]; %Initial weight

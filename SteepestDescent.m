@@ -5,6 +5,12 @@ function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,
     Goal = tpar(3);
     emin = tpar(4);
     
+    w1min=w1;
+    w2min=w2;
+    b1min=b1;
+    b2min=b2;
+    a2min=a2;
+    
     j=1;
     
     while j<=MaxI | e<=Goal %| grad<=GradGoal 
@@ -13,8 +19,8 @@ function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,
     sums1=[];
     
     for i=1:S
-        l=s2.*a1;
-        m=s1.*P;
+        l=s2.*a1; %sensibility of layer 2
+        m=s1.*P;  %sensibility of layer 1
         sums2(i,1)=sum(l(i,:));
         sums1(i,1)=sum(m(i,:));
     end
