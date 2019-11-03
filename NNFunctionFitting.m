@@ -5,21 +5,21 @@ clc
 %%
 %DATA
 %Interval definition
-c=-3;
-b=2;
+c=-1.5;
+b=1;
 R=50; %Number of points
 
 P=linspace(c,b,50); %Inputs
 T=polynomial2(P); %Outputs
 
 %NET DATA
-Nepoch=50; %Number of global iterations updating W and b
+Nepoch=100; %Number of global iterations updating W and b
 S=2; %Neurons in first layer
 
 w1=[10; 5]; %Initial weight
 b1=[-10 ; -5];%Initial bias
 
-w2=[7 ; 5]; %Initial weight
+w2=[5 ; 5]; %Initial weight
 b2=[-15];%Initial bias
 
 eminvec=[];
@@ -52,7 +52,7 @@ for epoch=1:Nepoch
     %%
     %TRAINING FUNCTION
 
-    tpar=[10000 0.1 0.01 emin]; %Number o it, Learning rate, Goal.
+    tpar=[10000 0.01 0.01 emin]; %Number o it, Learning rate, Goal.
 
     [w1,w2,b1,b2,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,s1,s2,P,T,S,R,tpar);
     eminvec(epoch)=emin;
