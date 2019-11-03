@@ -1,10 +1,21 @@
-function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,s1,s2,P,T,S,R,tpar)
+function [wbs,emin,a2min]=SteepestDescent(wbs,tpar)
 
     MaxI = tpar(1);
     lr = tpar(2);
     Goal = tpar(3);
-    emin = tpar(4);
+    P = tpar(4);
+    T = tpar(5);
+    S = tpar(6);
+    R = tpar(7);
+    emin = tpar(8);
+    w1 =wbs(1);
+    w2 = wbs(2);
+    b1 = wbs(3);
+    b2 = wbs(4);
+    s1 = wbs(5);
+    s2 = wbs(6);
     
+
     j=1;
     
     while j<=MaxI | e<=Goal %| grad<=GradGoal 
@@ -47,6 +58,7 @@ function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,
     
     j=j+1;
     
-    
     end
+    
+    wbs= [w1min,w2min,b1,b2,s1,s2];
 end
