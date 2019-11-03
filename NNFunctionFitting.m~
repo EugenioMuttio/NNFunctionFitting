@@ -7,16 +7,16 @@ clc
 %Interval definition
 c=-3;
 b=2;
-R=50; %Number of points
+R=5; %Number of points
 
-P=linspace(c,b,50); %Inputs
+P=linspace(c,b,5); %Inputs
 T=polynomial2(P); %Outputs
 
 %NET DATA
-Nepoch=23; %Number of global iterations updating W and b
+Nepoch=50; %Number of global iterations updating W and b
 S=2; %Neurons in first layer
 
-w1=[10; 5]; %Initial weight
+w1=[; 5]; %Initial weight
 b1=[-10 ; -5];%Initial bias
 
 w2=[7 ; 5]; %Initial weight
@@ -29,7 +29,7 @@ eminvec=[];
 for epoch=1:Nepoch
     n1=w1.*P+b1;
 
-    [a1,da1] = tansigmoid (n1);
+    [a1,da1] = logsigmoid (n1);
 
     n2=w2'*a1+b2;
 

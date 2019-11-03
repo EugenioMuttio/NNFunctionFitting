@@ -28,7 +28,7 @@ function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,
     
     n1=w1.*P+b1;
 
-    [a1,da1] = logsigmoid (n1);
+    [a1,da1] = tansigmoid (n1);
 
     n2=w2'*a1+b2;
 
