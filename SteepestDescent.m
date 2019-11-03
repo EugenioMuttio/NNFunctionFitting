@@ -5,6 +5,12 @@ function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,
     Goal = tpar(3);
     emin = tpar(4);
     
+    w1min=w1;
+    w2min=w2;
+    b1min=b1;
+    b2min=b2;
+    a2min=a2;
+    
     j=1;
     
     while j<=MaxI | e<=Goal %| grad<=GradGoal 
@@ -28,7 +34,7 @@ function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,
     
     n1=w1.*P+b1;
 
-    [a1,da1] = tansigmoid (n1);
+    [a1,da1] = logsigmoid (n1);
 
     n2=w2'*a1+b2;
 
