@@ -9,13 +9,8 @@ c=-3;
 b=2;
 R=10; %Number of points
 
-% <<<<<<< Updated upstream
 P=linspace(c,b,R); %Inputs
 T=polynomial(P); %Outputs
-% =======
-P=linspace(c,b,R); %Inputs
-T=polynomial(P); %Outputs
-% >>>>>>> Stashed changes
 
 %NET DATA
 Nepoch=100; %Number of global iterations updating W and b
