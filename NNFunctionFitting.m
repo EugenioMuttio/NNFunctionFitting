@@ -7,10 +7,15 @@ clc
 %Interval definition
 c=-3;
 b=2;
-R=50; %Number of points
+R=100; %Number of points
 
+<<<<<<< Updated upstream
 P=linspace(c,b,50); %Inputs
 T=polynomial2(P); %Outputs
+=======
+P=linspace(c,b,R); %Inputs
+T=polynomial(P); %Outputs
+>>>>>>> Stashed changes
 
 %NET DATA
 Nepoch=23; %Number of global iterations updating W and b
@@ -70,7 +75,7 @@ grid on
 set(gca,'fontsize',12)
 plot(x,y,'--k','LineWidth',1)
 plot (P,T,'*r','LineWidth',1)
-plot (P,a2min,'*b','LineWidth',1)
+plot (P,a2min,'--*b','LineWidth',1)
 legend('Real function','Targets','Aprox','fontsize',12)
 hold off
 
