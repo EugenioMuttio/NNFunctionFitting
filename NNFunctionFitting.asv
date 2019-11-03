@@ -8,7 +8,6 @@ c=-3;
 b=3;
 R=4; %Number of points
 P=[c c/3 b/3 b];
-targets=polynomial(P);
 T=polynomial(P);
 T=T/(T(1)^2+T(2)^2+T(3)^2+T(4)^2)^(1/2);
 
@@ -53,19 +52,17 @@ end
 
 %TRAINING FUNCTION
 
-tpar=[10000 , 0.01 , 0.001 , 0.001, emin]; %Number o it, Learning rate, Goal, Grad goal.
+tpar=[100 , 0.1 , 0.001 , 0.001, emin]; %Number o it, Learning rate, Goal, Grad goal.
 
 [w1,w2,b1,b2,emin]=SteepestDescent(P,T,S,R,w1,w2,b1,b2,a1,a2,s1,s2,tpar);
-
-a2=a2*(targets(1)^2+targets(2)^2+targets(3)^2+targets(4)^2)^(1/2);
 
 hold on
 grid on
 set(gca,'fontsize',12)
 plot(x,y,'--k','LineWidth',1)
-plot (P,targets,'*r','LineWidth',1)
+plot (P,T,'*r','LineWidth',1)
 plot (P,a2,'*b','LineWidth',1)
-legend('Real function','Targets','Aprox','fontsize',12)
+legend('Real function','Targets','fontsize',12)
 hold off
 
 
