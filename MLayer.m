@@ -5,7 +5,7 @@ clc
 %DATA
 c=-1.5;
 b=1;
-P=linspace(c,b,50);
+P=linspace(c,b,20);
 targets=polynomial2(P);
 T=polynomial2(P);
 
@@ -25,7 +25,7 @@ mlnet = feedforwardnet(1,'traingd'); %HiddenSizes
 
 mlnet.trainParam.epochs = 100;
 mlnet.layers{1}.size = 2;
-mlnet.layers{1}.transferFcn = 'tansig';
+mlnet.layers{1}.transferFcn = 'logsig';
 mlnet.trainParam.lr= 0.01;
 dividetrain(50);
 [mlnet,tr] = train(mlnet,P,T);

@@ -7,13 +7,12 @@ clc
 %Interval definition
 c=-3;
 b=0;
-R=20; %Number of points
+R=10; %Number of points
 
 P=linspace(c,b,R); %Inputs
 T=polynomial2(P); %Outputs
 
 Data=linspace(c,b,100); %Data 
-n_targets=5; 
 
 %NET DATA
 Nepoch=100; %Number of global iterations updating W and b
@@ -32,7 +31,7 @@ eminvec=[];
 for epoch=1:Nepoch
     n1=w1.*P+b1;
 
-    [a1,da1] = tansigmoid (n1);
+    [a1,da1] = logsigmoid (n1);
 
     n2=w2'*a1+b2;
 
@@ -65,7 +64,7 @@ for Pi=1:length(Data)
     %Global Loop 
     n1=w1.*Data(Pi)+b1; 
  
-    [a1,da1] = tansigmoid (n1); 
+    [a1,da1] = logsigmoid (n1); 
  
     n2=w2'*a1+b2; 
  
@@ -84,7 +83,7 @@ grid on
 set(gca,'fontsize',12)
 plot(x,y,'--k','LineWidth',1)
 plot (P,T,'*r','LineWidth',1)
-plot (P,a2min,'--*b','LineWidth',1)
+plot (P,a2min,'*b','LineWidth',1)
 plot(Data,fit,'--m','LineWidth',1) 
 legend('Real function','Targets','Aprox','Fit','fontsize',12) 
 hold off
