@@ -5,22 +5,22 @@ clc
 %%
 %DATA
 %Interval definition
-c=-1.5;
-b=1;
-R=50; %Number of points
+c=-3;
+b=2;
+R=10; %Number of points
 
-P=linspace(c,b,50); %Inputs
+P=linspace(c,b,R); %Inputs
 T=polynomial2(P); %Outputs
 
 %NET DATA
 Nepoch=100; %Number of global iterations updating W and b
 S=2; %Neurons in first layer
 
-w1=[10; 5]; %Initial weight
-b1=[-10 ; -5];%Initial bias
+w1=[2; 3]; %Initial weight
+b1=[2 ; -5];%Initial bias
 
-w2=[5 ; 5]; %Initial weight
-b2=[-15];%Initial bias
+w2=[-8 ; -3]; %Initial weight
+b2=[5];%Initial bias
 
 eminvec=[];
 
@@ -38,7 +38,6 @@ for epoch=1:Nepoch
     emin=mise(T,a2,R,S); %First error in each Epoch
     
 
-
     %%
     %SENSIBILITIES
 
@@ -52,7 +51,7 @@ for epoch=1:Nepoch
     %%
     %TRAINING FUNCTION
 
-    tpar=[10000 0.01 0.01 emin]; %Number o it, Learning rate, Goal.
+    tpar=[100 0.01 0.01 emin]; %Number o it, Learning rate, Goal.
 
     [w1,w2,b1,b2,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,s1,s2,P,T,S,R,tpar);
     eminvec(epoch)=emin;
@@ -70,7 +69,7 @@ grid on
 set(gca,'fontsize',12)
 plot(x,y,'--k','LineWidth',1)
 plot (P,T,'*r','LineWidth',1)
-plot (P,a2min,'*b','LineWidth',1)
+plot (P,a2min,'--*b','LineWidth',1)
 legend('Real function','Targets','Aprox','fontsize',12)
 hold off
 

@@ -40,6 +40,15 @@ function [w1min,w2min,b1min,b2min,emin,a2min]=SteepestDescent(w1,w2,b1,b2,a1,a2,
 
     [a2,da2] = lineal (n2);
     
+    %SENSIBILITIES
+
+    s2=-2*(T-a2); 
+    s1= da1.*w2;
+
+    for i=1:S   
+        s1(i,:)=s1(i,:).*s2;
+    end
+    
     e=mise(T,a2,R,S);
     
     if emin>e
