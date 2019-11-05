@@ -6,11 +6,14 @@ clc
 %DATA
 %Interval definition
 c=-3;
-b=2;
-R=10; %Number of points
+b=0;
+R=20; %Number of points
 
 P=linspace(c,b,R); %Inputs
 T=polynomial2(P); %Outputs
+
+Data=linspace(c,b,100); %Data 
+n_targets=5; 
 
 %NET DATA
 Nepoch=100; %Number of global iterations updating W and b
@@ -58,6 +61,18 @@ for epoch=1:Nepoch
     
 end
 
+for Pi=1:length(Data) 
+    %Global Loop 
+    n1=w1.*Data(Pi)+b1; 
+ 
+    [a1,da1] = tansigmoid (n1); 
+ 
+    n2=w2'*a1+b2; 
+ 
+    [a2,da2] = lineal (n2); 
+    fit(Pi)=a2; 
+end 
+
 %%
 %Plot
 x=linspace(c,b,10000);
@@ -70,7 +85,8 @@ set(gca,'fontsize',12)
 plot(x,y,'--k','LineWidth',1)
 plot (P,T,'*r','LineWidth',1)
 plot (P,a2min,'--*b','LineWidth',1)
-legend('Real function','Targets','Aprox','fontsize',12)
+plot(Data,fit,'--m','LineWidth',1) 
+legend('Real function','Targets','Aprox','Fit','fontsize',12) 
 hold off
 
 figure(2)
